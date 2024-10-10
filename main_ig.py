@@ -112,8 +112,9 @@ if __name__ == "__main__":
     # create page header
     st.header('**Instagram Crawler**')
 
-    col1, col2, col3 = st.columns([3,2,2])
-    with col1:
+    # col1, col2, col3 = st.columns([3,2,2])
+    # with col1:
+    with st.sidebar:
         # create date picker
         date_range = ui.date_picker(label='Select Date Range', mode='range', key='date_range', default_value=None)
 
@@ -122,8 +123,8 @@ if __name__ == "__main__":
 
         st.selectbox(label='**:blue[Influencer Name]**', key='influencer_name', options=influencer_names)
 
-    # create button
-    st.button(label='Get Posts', key='button_get_posts')
+        # create button
+        st.button(label='Get Posts', key='button_get_posts')
 
     if st.session_state['button_get_posts']:
         if date_range != None:
