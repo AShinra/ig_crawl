@@ -81,7 +81,7 @@ if __name__ == "__main__":
     date_range = ui.date_picker(label='Select Date Range', mode='range', key='date_range', default_value=None)
 
     # create text box
-    st.text_input(label='Input Influencer Account', key='influencer_account', label_visibility='hidden')
+    st.text_input(label=':blue[Influencer Account]', key='influencer_account')
 
     # create button
     st.button(label='Get Posts', key='button_get_posts')
