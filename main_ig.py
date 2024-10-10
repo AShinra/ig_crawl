@@ -121,7 +121,7 @@ if __name__ == "__main__":
             else:
                 st.dataframe(df, hide_index=True)
         else:
-            st.error('Please input influencer account')
+            st.error('Please input date range!!!')
 
 
 
