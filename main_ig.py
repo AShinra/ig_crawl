@@ -90,6 +90,19 @@ def main_crawl(profile_name, date_range):
 
 if __name__ == "__main__":
 
+    input_style = """
+    <style>
+    button[data-testid="stBaseButton-header"] {
+        display: none;
+    }
+    button[data-testid="stBaseButton-headerNoPadding"] {
+        display: none;
+    }
+    </style>
+    """
+    st.markdown(input_style, unsafe_allow_html=True)
+
+
     influencers = get_influencers()
     # get influencer names
     influencer_names = []
