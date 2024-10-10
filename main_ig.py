@@ -44,7 +44,7 @@ def main_crawl(profile_name, date_range):
         posts = profile.get_posts()
         
     except Exception as msg_error:
-        print('Limit Reached')
+        st.error('Limit Reached')
         df = pd.DataFrame()
         pass
 
