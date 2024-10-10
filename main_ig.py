@@ -3,6 +3,22 @@ import pandas as pd
 import instaloader
 import streamlit_shadcn_ui as ui
 from datetime import datetime
+import json
+
+
+def get_influencers():
+
+    # Opening JSON file
+    f = open('influencers.json')
+
+    # returns JSON object as a dictionary
+    influencer_data = json.load(f)
+
+    # Closing file
+    f.close()
+
+    return influencer_data
+
 
 def main_crawl(profile_name, date_range):
 
@@ -74,25 +90,36 @@ def main_crawl(profile_name, date_range):
 
 if __name__ == "__main__":
 
+    influencers = get_influencers()
+    # get influencer names
+    influencer_names = []
+    for k, v in influencers.items():
+        influencer_names.append(k)
+    
     # create page header
-    st.header('Instagram Crawler')
+    st.header('**Instagram Crawler**')
 
-    # create date picker
-    date_range = ui.date_picker(label='Select Date Range', mode='range', key='date_range', default_value=None)
+    col1, col2, col3 = st.columns([3,2,2])
+    with col1:
+        # create date picker
+        date_range = ui.date_picker(label='Select Date Range', mode='range', key='date_range', default_value=None)
 
-    # create text box
-    st.text_input(label=':blue[Influencer Account]', key='influencer_account')
+        # create text box
+        # st.text_input(label='**:blue[Influencer Account]**', key='influencer_account', )
+
+        st.selectbox(label='**:blue[Influencer Name]**', key='influencer_name', options=influencer_names)
 
     # create button
     st.button(label='Get Posts', key='button_get_posts')
 
     if st.session_state['button_get_posts']:
-        if st.session_state['influencer_account'] not in ['', None] or date_range == []:
-            df = main_crawl(st.session_state['influencer_account'], date_range)
+        if date_range != None:
+            influencer_account = influencers[st.session_state['influencer_name']]
+            df = main_crawl(influencer_account, date_range)
             if df.empty:
                 pass
             else:
-                st.write(df)
+                st.dataframe(df, hide_index=True)
         else:
             st.error('Please input influencer account')
 
