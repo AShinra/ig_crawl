@@ -109,6 +109,8 @@ if __name__ == "__main__":
     for k, v in influencers.items():
         influencer_names.append(k)
     
+    influencer_names.sort(reverse=False)
+    
     # create page header
     st.header('**Instagram Crawler**')
 
