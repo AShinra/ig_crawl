@@ -41,7 +41,6 @@ def main_crawl(profile_name, date_range):
         profile = instaloader.Profile.from_username(L.context, profile_name)
         # print(profile.full_name)
         # print(profile_name)
-        posts = profile.get_posts()
         
     except Exception as msg_error:
         st.error('Limit Reached')
@@ -49,6 +48,7 @@ def main_crawl(profile_name, date_range):
         pass
 
     else:
+        posts = profile.get_posts()
         for post in posts:
             # date_limit = latest_date
             date_start = date_range[0]
